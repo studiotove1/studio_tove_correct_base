@@ -1039,54 +1039,54 @@ img[src="assets/gott-hjarta.jpg"] {
     <img class="art" src="assets/gott-hjarta.jpg">
     <h2>Gott hjärta</h2>
     <p class="meta">Limited edition</p>
-    <p class="price">From 499 SEK</p>
+    <p class="price">From 299 SEK</p>
     <a class="story-link" href="#gott-hjarta">View artwork →</a>
 </article>
 <article class="card card-wide">
     <img class="art" src="assets/hemmafrun.jpg">
     <h2>Hemmafrun</h2>
     <p class="meta">Limited edition</p>
-    <p class="price">From 499 SEK</p>
+    <p class="price">From 299 SEK</p>
     <a class="story-link" href="#hemmafrun">View artwork →</a>
 </article>
 <article class="card card-farbrorn">
     <img class="art" src="assets/farbrorn.jpg">
     <h2>Farbrorn</h2>
     <p class="meta">Limited edition</p>
-    <p class="price">From 499 SEK</p>
+    <p class="price">From 299 SEK</p>
     <a class="story-link" href="#farbrorn">View artwork →</a>
 </article>
 <article class="card"><img class="art" src="assets/kvinnan.jpg">
                     <h2>Kvinnan</h2>
                     <p class="meta">Limited edition</p>
-                    <p class="price">From 499 SEK</p><a class="story-link" href="#kvinnan">View artwork →</a>
+                    <p class="price">From 299 SEK</p><a class="story-link" href="#kvinnan">View artwork →</a>
                 </article>
                 <article class="card"><img class="art" src="assets/gubben-new.jpg">
                     <h2>Gubben</h2>
                     <p class="meta">Limited edition</p>
-                    <p class="price">From 499 SEK</p><a class="story-link" href="#gubben">View artwork →</a>
+                    <p class="price">From 299 SEK</p><a class="story-link" href="#gubben">View artwork →</a>
                 </article>
                 <article class="card card-systrarna"><img class="art" src="assets/lanterns.jpg">
                     <h2>Systrarna</h2>
                     <p class="meta">Limited edition</p>
-                    <p class="price">From 499 SEK</p><a class="story-link" href="#systrarna">View artwork →</a>
+                    <p class="price">From 299 SEK</p><a class="story-link" href="#systrarna">View artwork →</a>
                 </article>
                 
                 <article class="card"><img class="art" src="assets/barnet.jpg">
                     <h2>Barnet</h2>
                     <p class="meta">Limited edition</p>
-                    <p class="price">From 499 SEK</p><a class="story-link" href="#barnet">View artwork →</a>
+                    <p class="price">From 299 SEK</p><a class="story-link" href="#barnet">View artwork →</a>
                 </article>
                 <article class="card"><img class="art" src="assets/violinisten.jpg">
                     <h2>Violinisten</h2>
                     <p class="meta">Limited edition</p>
-                    <p class="price">From 499 SEK</p><a class="story-link" href="#violinisten">View artwork →</a>
+                    <p class="price">From 299 SEK</p><a class="story-link" href="#violinisten">View artwork →</a>
                 </article>
                 <article class="card">
     <img class="art" src="assets/slarvig-historia.jpg">
     <h2>Slarvig historia</h2>
     <p class="meta">Limited edition</p>
-    <p class="price">From 499 SEK</p>
+    <p class="price">From 299 SEK</p>
     <a class="story-link" href="#slarvig-historia">View artwork →</a>
 </article>
             </div>
@@ -1251,11 +1251,40 @@ img[src="assets/gott-hjarta.jpg"] {
     'hemmafrun': [['20x25', 0, 10], ['40x50', 200, 14], ['75x100', 400, 29]],
     'farbrorn': [['15x20', 0, 10], ['30x40', 100, 14], ['50x70', 300, 21]]
 };
+const shopifyVariants = {
+  'gubben': {
+    '13x18': '58433432519039',
+    '27x35': '58433432551807',
+    '40x50': '58433432584575'
+  }
+};
+
         const frames = [['No frame', 0, 'none'], ['Walnut', 450, 'walnut'], ['Black', 350, 'black']];
         const root = document.getElementById('products');
-        products.forEach(p => { root.insertAdjacentHTML('beforeend', `<section class="product" id="${p.id}" data-title="${p.title}" data-img="${p.img}" data-room="${p.room}"><div><div class="view-toggle"><button class="artBtn active">Artwork</button><button class="roomBtn">View in a room</button></div><div class="stage"><div class="frame"><img src="${p.img}" alt="${p.title}"></div></div><p class="note">Room view shows approximate proportions.</p></div><div class="detail"><p class="limited">Limited edition print</p><h2>${p.title}</h2><div class="controls"><p class="label">Size</p><div class="choices sizeChoices">${sizesByProduct[p.id].map((s, i) => `<button class="choice ${i === 0 ? 'active' : ''}" data-price="${s[1]}" data-width="${s[2]}">${s[0]}</button>`).join('')}</div><p class="label">Frame</p><div class="choices frameChoices">${frames.map((f, i) => `<button class="choice ${i === 0 ? 'active' : ''}" data-price="${f[1]}" data-frame="${f[2]}">${f[2] === 'walnut' ? '<span class="swatch w"></span>' : f[2] === 'black' ? '<span class="swatch b"></span>' : ''}${f[0]}</button>`).join('')}</div><p class="product-price">99 SEK</p><button class="add">Add to Cart</button></div></div></section>`) });
+        products.forEach(p => { root.insertAdjacentHTML('beforeend', `<section class="product" id="${p.id}" data-title="${p.title}" data-img="${p.img}" data-room="${p.room}"><div><div class="view-toggle"><button class="artBtn active">Artwork</button><button class="roomBtn">View in a room</button></div><div class="stage"><div class="frame"><img src="${p.img}" alt="${p.title}"></div></div><p class="note">Room view shows approximate proportions.</p></div><div class="detail"><p class="limited">Limited edition print</p><h2>${p.title}</h2><div class="controls"><p class="label">Size</p><div class="choices sizeChoices">${sizesByProduct[p.id].map((s, i) => `<button class="choice ${i === 0 ? 'active' : ''}" data-price="${s[1]}" data-width="${s[2]}">${s[0]}</button>`).join('')}</div><p class="label">Frame</p><div class="choices frameChoices">${frames.map((f, i) => `<button class="choice ${i === 0 ? 'active' : ''}" data-price="${f[1]}" data-frame="${f[2]}">${f[2] === 'walnut' ? '<span class="swatch w"></span>' : f[2] === 'black' ? '<span class="swatch b"></span>' : ''}${f[0]}</button>`).join('')}</div><p class="product-price">299 SEK</p><button class="add">Add to Cart</button></div></div></section>`) });
         let cart = [];
-        document.querySelectorAll('.product').forEach(sec => { const stage = sec.querySelector('.stage'), frame = sec.querySelector('.frame'), price = sec.querySelector('.product-price'); stage.style.setProperty('--room-image', `url('${sec.dataset.room}')`); let size = 0, fr = 0; const update = () => { price.textContent = 299 + size + fr + ' SEK' }; sec.querySelectorAll('.sizeChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.sizeChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); size = +b.dataset.price; if (stage.classList.contains('room')) frame.style.width = b.dataset.width + '%'; update() }); sec.querySelectorAll('.frameChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.frameChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); fr = +b.dataset.price; frame.className = 'frame ' + (b.dataset.frame === 'none' ? '' : b.dataset.frame); update() }); sec.querySelector('.artBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.remove('room'); frame.style.width = ''; stage.style.opacity = 1 }, 170); sec.querySelector('.artBtn').classList.add('active'); sec.querySelector('.roomBtn').classList.remove('active') }; sec.querySelector('.roomBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.add('room'); const b = sec.querySelector('.sizeChoices .choice.active'); frame.style.width = b.dataset.width + '%'; stage.style.opacity = 1 }, 170); sec.querySelector('.roomBtn').classList.add('active'); sec.querySelector('.artBtn').classList.remove('active') }; sec.querySelector('.add').onclick = () => { cart.push({ title: sec.dataset.title, img: sec.dataset.img, size: sec.querySelector('.sizeChoices .active').textContent.trim(), frame: sec.querySelector('.frameChoices .active').textContent.trim(), price: 499 + size + fr }); render(); openCart() } });
+        document.querySelectorAll('.product').forEach(sec => { const stage = sec.querySelector('.stage'), frame = sec.querySelector('.frame'), price = sec.querySelector('.product-price'); stage.style.setProperty('--room-image', `url('${sec.dataset.room}')`); let size = 0, fr = 0; const update = () => { price.textContent = 299 + size + fr + ' SEK' }; sec.querySelectorAll('.sizeChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.sizeChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); size = +b.dataset.price; if (stage.classList.contains('room')) frame.style.width = b.dataset.width + '%'; update() }); sec.querySelectorAll('.frameChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.frameChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); fr = +b.dataset.price; frame.className = 'frame ' + (b.dataset.frame === 'none' ? '' : b.dataset.frame); update() }); sec.querySelector('.artBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.remove('room'); frame.style.width = ''; stage.style.opacity = 1 }, 170); sec.querySelector('.artBtn').classList.add('active'); sec.querySelector('.roomBtn').classList.remove('active') }; sec.querySelector('.roomBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.add('room'); const b = sec.querySelector('.sizeChoices .choice.active'); frame.style.width = b.dataset.width + '%'; stage.style.opacity = 1 }, 170); sec.querySelector('.roomBtn').classList.add('active'); sec.querySelector('.artBtn').classList.remove('active') }; sec.querySelector('.add').onclick = () => {
+            const selectedSize = sec.querySelector('.sizeChoices .active').textContent.trim();
+
+if (sec.id === 'gubben') {
+    const variantId = shopifyVariants.gubben[selectedSize];
+   window.location.href = `https://1eb00u-rv.myshopify.com/cart/${variantId}:1?storefront=true`;
+    return;
+}
+  
+
+  
+
+  cart.push({
+    title: sec.dataset.title,
+    img: sec.dataset.img,
+    size: selectedSize,
+    frame: sec.querySelector('.frameChoices .active').textContent.trim(),
+    price: 499 + size + fr
+  });
+  render();
+  openCart();
+} });
         const drawer = document.getElementById('cart'), back = document.getElementById('backdrop'); function openCart() { drawer.classList.add('open'); back.classList.add('open') } function closeCart() { drawer.classList.remove('open'); back.classList.remove('open') } document.getElementById('cartTrigger').onclick = openCart; document.getElementById('cartClose').onclick = closeCart; back.onclick = closeCart; function render() { document.getElementById('cartCount').textContent = cart.length; document.getElementById('cartItems').innerHTML = cart.length ? cart.map(i => `<div class="cart-item"><img src="${i.img}"><div><strong>${i.title}</strong><br><small>${i.size}<br>${i.frame}</small></div><span>${i.price} SEK</span></div>`).join('') : '<p>Your cart is empty.</p>'; document.getElementById('cartTotal').textContent = cart.reduce((a, b) => a + b.price, 0) + ' SEK' }
     </script>
 </body>
