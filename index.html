@@ -1256,7 +1256,37 @@ const shopifyVariants = {
     '13x18': '58433432519039',
     '27x35': '58433432551807',
     '40x50': '58433432584575'
-  }
+  },
+'violinisten': {
+    '20x25': '58433538228607',
+    '35x35': '58433538261375'
+},'farbrorn': {
+    '15x20': '58433306198399',
+    '30x40': '58388874887551',
+    '50x70': '58388874920319'
+},'slarvig-historia': {
+    '13x18': '58388710883711',
+    'A3 (29.7x42)': '58388710916479',
+    '50x70': '58388710949247',
+    '75x100': '58388710982015'
+},'kvinnan': {
+    '20x25': '58383493792127',
+    '45x60': '58383493824895',
+    '60x80': '58383493857663'
+},'systrarna': {
+    '20x25': '58383246819711',
+    '30x40': '58383246852479',
+    '40x50': '58383246885247'
+},'barnet': {
+    '20x25': '58382798455167',
+    '40x50': '58382798487935',
+    '75x100': '58382798520703'
+},'gott-hjarta': {
+    '25x25': '58356073267583',
+    '35x35': '58356073300351',
+    '50x50': '58356073333119',
+    '70x70': '58356073365887'
+}
 };
 
         const frames = [['No frame', 0, 'none'], ['Walnut', 450, 'walnut'], ['Black', 350, 'black']];
@@ -1266,9 +1296,9 @@ const shopifyVariants = {
         document.querySelectorAll('.product').forEach(sec => { const stage = sec.querySelector('.stage'), frame = sec.querySelector('.frame'), price = sec.querySelector('.product-price'); stage.style.setProperty('--room-image', `url('${sec.dataset.room}')`); let size = 0, fr = 0; const update = () => { price.textContent = 299 + size + fr + ' SEK' }; sec.querySelectorAll('.sizeChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.sizeChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); size = +b.dataset.price; if (stage.classList.contains('room')) frame.style.width = b.dataset.width + '%'; update() }); sec.querySelectorAll('.frameChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.frameChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); fr = +b.dataset.price; frame.className = 'frame ' + (b.dataset.frame === 'none' ? '' : b.dataset.frame); update() }); sec.querySelector('.artBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.remove('room'); frame.style.width = ''; stage.style.opacity = 1 }, 170); sec.querySelector('.artBtn').classList.add('active'); sec.querySelector('.roomBtn').classList.remove('active') }; sec.querySelector('.roomBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.add('room'); const b = sec.querySelector('.sizeChoices .choice.active'); frame.style.width = b.dataset.width + '%'; stage.style.opacity = 1 }, 170); sec.querySelector('.roomBtn').classList.add('active'); sec.querySelector('.artBtn').classList.remove('active') }; sec.querySelector('.add').onclick = () => {
             const selectedSize = sec.querySelector('.sizeChoices .active').textContent.trim();
 
-if (sec.id === 'gubben') {
-    const variantId = shopifyVariants.gubben[selectedSize];
-   window.location.href = `https://1eb00u-rv.myshopify.com/cart/${variantId}:1?storefront=true`;
+if (shopifyVariants[sec.id]) {
+    const variantId = shopifyVariants[sec.id][selectedSize];
+    window.location.href = `https://1eb00u-rv.myshopify.com/cart/${variantId}:1`;
     return;
 }
   
