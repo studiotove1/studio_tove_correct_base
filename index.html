@@ -1111,7 +1111,7 @@ img[src="assets/gott-hjarta.jpg"] {
             <p>Your cart is empty.</p>
         </div>
         <div>
-            <p>Subtotal: <strong id="cartTotal">0 SEK</strong></p><button class="checkout">Checkout</button>
+            <p>Subtotal: <strong id="cartTotal">0 SEK</strong></p><<button class="checkout" id="checkoutBtn">Checkout</button>
         </div>
     </aside>
     
@@ -1296,11 +1296,7 @@ const shopifyVariants = {
         document.querySelectorAll('.product').forEach(sec => { const stage = sec.querySelector('.stage'), frame = sec.querySelector('.frame'), price = sec.querySelector('.product-price'); stage.style.setProperty('--room-image', `url('${sec.dataset.room}')`); let size = 0, fr = 0; const update = () => { price.textContent = 299 + size + fr + ' SEK' }; sec.querySelectorAll('.sizeChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.sizeChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); size = +b.dataset.price; if (stage.classList.contains('room')) frame.style.width = b.dataset.width + '%'; update() }); sec.querySelectorAll('.frameChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.frameChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); fr = +b.dataset.price; frame.className = 'frame ' + (b.dataset.frame === 'none' ? '' : b.dataset.frame); update() }); sec.querySelector('.artBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.remove('room'); frame.style.width = ''; stage.style.opacity = 1 }, 170); sec.querySelector('.artBtn').classList.add('active'); sec.querySelector('.roomBtn').classList.remove('active') }; sec.querySelector('.roomBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.add('room'); const b = sec.querySelector('.sizeChoices .choice.active'); frame.style.width = b.dataset.width + '%'; stage.style.opacity = 1 }, 170); sec.querySelector('.roomBtn').classList.add('active'); sec.querySelector('.artBtn').classList.remove('active') }; sec.querySelector('.add').onclick = () => {
             const selectedSize = sec.querySelector('.sizeChoices .active').textContent.trim();
 
-if (shopifyVariants[sec.id]) {
-    const variantId = shopifyVariants[sec.id][selectedSize];
-    window.location.href = `https://1eb00u-rv.myshopify.com/cart/${variantId}:1`;
-    return;
-}
+
   
 
   
