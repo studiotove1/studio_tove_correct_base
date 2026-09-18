@@ -1111,7 +1111,7 @@ img[src="assets/gott-hjarta.jpg"] {
             <p>Your cart is empty.</p>
         </div>
         <div>
-            <p>Subtotal: <strong id="cartTotal">0 SEK</strong></p><<button class="checkout" id="checkoutBtn">Checkout</button>
+            <p>Subtotal: <strong id="cartTotal">0 SEK</strong></p><button class="checkout" id="checkoutBtn">Checkout</button>
         </div>
     </aside>
     
@@ -1286,32 +1286,177 @@ const shopifyVariants = {
     '35x35': '58356073300351',
     '50x50': '58356073333119',
     '70x70': '58356073365887'
-}
+},'hemmafrun': [['13x18', 0, 10], ['A2 (42x59.4)', 100, 14], ['A1 (59.4x84.1)', 200, 21], ['75x100', 400, 29]],
 };
 
         const frames = [['No frame', 0, 'none'], ['Walnut', 450, 'walnut'], ['Black', 350, 'black']];
         const root = document.getElementById('products');
         products.forEach(p => { root.insertAdjacentHTML('beforeend', `<section class="product" id="${p.id}" data-title="${p.title}" data-img="${p.img}" data-room="${p.room}"><div><div class="view-toggle"><button class="artBtn active">Artwork</button><button class="roomBtn">View in a room</button></div><div class="stage"><div class="frame"><img src="${p.img}" alt="${p.title}"></div></div><p class="note">Room view shows approximate proportions.</p></div><div class="detail"><p class="limited">Limited edition print</p><h2>${p.title}</h2><div class="controls"><p class="label">Size</p><div class="choices sizeChoices">${sizesByProduct[p.id].map((s, i) => `<button class="choice ${i === 0 ? 'active' : ''}" data-price="${s[1]}" data-width="${s[2]}">${s[0]}</button>`).join('')}</div><p class="label">Frame</p><div class="choices frameChoices">${frames.map((f, i) => `<button class="choice ${i === 0 ? 'active' : ''}" data-price="${f[1]}" data-frame="${f[2]}">${f[2] === 'walnut' ? '<span class="swatch w"></span>' : f[2] === 'black' ? '<span class="swatch b"></span>' : ''}${f[0]}</button>`).join('')}</div><p class="product-price">299 SEK</p><button class="add">Add to Cart</button></div></div></section>`) });
-        let cart = [];
-        document.querySelectorAll('.product').forEach(sec => { const stage = sec.querySelector('.stage'), frame = sec.querySelector('.frame'), price = sec.querySelector('.product-price'); stage.style.setProperty('--room-image', `url('${sec.dataset.room}')`); let size = 0, fr = 0; const update = () => { price.textContent = 299 + size + fr + ' SEK' }; sec.querySelectorAll('.sizeChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.sizeChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); size = +b.dataset.price; if (stage.classList.contains('room')) frame.style.width = b.dataset.width + '%'; update() }); sec.querySelectorAll('.frameChoices .choice').forEach(b => b.onclick = () => { sec.querySelectorAll('.frameChoices .choice').forEach(x => x.classList.remove('active')); b.classList.add('active'); fr = +b.dataset.price; frame.className = 'frame ' + (b.dataset.frame === 'none' ? '' : b.dataset.frame); update() }); sec.querySelector('.artBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.remove('room'); frame.style.width = ''; stage.style.opacity = 1 }, 170); sec.querySelector('.artBtn').classList.add('active'); sec.querySelector('.roomBtn').classList.remove('active') }; sec.querySelector('.roomBtn').onclick = () => { stage.style.opacity = .25; setTimeout(() => { stage.classList.add('room'); const b = sec.querySelector('.sizeChoices .choice.active'); frame.style.width = b.dataset.width + '%'; stage.style.opacity = 1 }, 170); sec.querySelector('.roomBtn').classList.add('active'); sec.querySelector('.artBtn').classList.remove('active') }; sec.querySelector('.add').onclick = () => {
-            const selectedSize = sec.querySelector('.sizeChoices .active').textContent.trim();
+                let cart = [];
 
+        document.querySelectorAll('.product').forEach(sec => {
+            const stage = sec.querySelector('.stage');
+            const frame = sec.querySelector('.frame');
+            const price = sec.querySelector('.product-price');
 
-  
+            stage.style.setProperty('--room-image', `url('${sec.dataset.room}')`);
 
-  
+            let size = 0;
+            let fr = 0;
 
-  cart.push({
-    title: sec.dataset.title,
-    img: sec.dataset.img,
-    size: selectedSize,
-    frame: sec.querySelector('.frameChoices .active').textContent.trim(),
-    price: 499 + size + fr
-  });
-  render();
-  openCart();
-} });
-        const drawer = document.getElementById('cart'), back = document.getElementById('backdrop'); function openCart() { drawer.classList.add('open'); back.classList.add('open') } function closeCart() { drawer.classList.remove('open'); back.classList.remove('open') } document.getElementById('cartTrigger').onclick = openCart; document.getElementById('cartClose').onclick = closeCart; back.onclick = closeCart; function render() { document.getElementById('cartCount').textContent = cart.length; document.getElementById('cartItems').innerHTML = cart.length ? cart.map(i => `<div class="cart-item"><img src="${i.img}"><div><strong>${i.title}</strong><br><small>${i.size}<br>${i.frame}</small></div><span>${i.price} SEK</span></div>`).join('') : '<p>Your cart is empty.</p>'; document.getElementById('cartTotal').textContent = cart.reduce((a, b) => a + b.price, 0) + ' SEK' }
+            const update = () => {
+                price.textContent = 299 + size + fr + ' SEK';
+            };
+
+            sec.querySelectorAll('.sizeChoices .choice').forEach(b => {
+                b.onclick = () => {
+                    sec.querySelectorAll('.sizeChoices .choice').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active');
+                    size = +b.dataset.price;
+
+                    if (stage.classList.contains('room')) {
+                        frame.style.width = b.dataset.width + '%';
+                    }
+
+                    update();
+                };
+            });
+
+            sec.querySelectorAll('.frameChoices .choice').forEach(b => {
+                b.onclick = () => {
+                    sec.querySelectorAll('.frameChoices .choice').forEach(x => x.classList.remove('active'));
+                    b.classList.add('active');
+                    fr = +b.dataset.price;
+
+                    frame.className =
+                        'frame ' + (b.dataset.frame === 'none' ? '' : b.dataset.frame);
+
+                    update();
+                };
+            });
+
+            sec.querySelector('.artBtn').onclick = () => {
+                stage.style.opacity = .25;
+
+                setTimeout(() => {
+                    stage.classList.remove('room');
+                    frame.style.width = '';
+                    stage.style.opacity = 1;
+                }, 170);
+
+                sec.querySelector('.artBtn').classList.add('active');
+                sec.querySelector('.roomBtn').classList.remove('active');
+            };
+
+            sec.querySelector('.roomBtn').onclick = () => {
+                stage.style.opacity = .25;
+
+                setTimeout(() => {
+                    stage.classList.add('room');
+                    const b = sec.querySelector('.sizeChoices .choice.active');
+                    frame.style.width = b.dataset.width + '%';
+                    stage.style.opacity = 1;
+                }, 170);
+
+                sec.querySelector('.roomBtn').classList.add('active');
+                sec.querySelector('.artBtn').classList.remove('active');
+            };
+
+            sec.querySelector('.add').onclick = () => {
+                const selectedSize =
+                    sec.querySelector('.sizeChoices .choice.active').textContent.trim();
+
+                const selectedFrame =
+                    sec.querySelector('.frameChoices .choice.active').textContent.trim();
+
+                cart.push({
+                    id: sec.id,
+                    title: sec.dataset.title,
+                    img: sec.dataset.img,
+                    size: selectedSize,
+                    frame: selectedFrame,
+                    price: 299 + size + fr
+                });
+
+                render();
+                openCart();
+            };
+        });
+
+        const drawer = document.getElementById('cart');
+        const back = document.getElementById('backdrop');
+
+        function openCart() {
+            drawer.classList.add('open');
+            back.classList.add('open');
+        }
+
+        function closeCart() {
+            drawer.classList.remove('open');
+            back.classList.remove('open');
+        }
+
+        document.getElementById('cartTrigger').onclick = openCart;
+        document.getElementById('cartClose').onclick = closeCart;
+        back.onclick = closeCart;
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            render();
+        }
+
+        function render() {
+            document.getElementById('cartCount').textContent = cart.length;
+
+            document.getElementById('cartItems').innerHTML = cart.length
+                ? cart.map((item, index) => `
+                    <div class="cart-item">
+                        <img src="${item.img}">
+                        <div>
+                            <strong>${item.title}</strong><br>
+                            <small>${item.size}<br>${item.frame}</small><br>
+                            <button
+                                type="button"
+                                onclick="removeFromCart(${index})"
+                                style="border:0;background:none;padding:7px 0 0;text-decoration:underline;cursor:pointer;font-size:11px;">
+                                Remove
+                            </button>
+                        </div>
+                        <span>${item.price} SEK</span>
+                    </div>
+                `).join('')
+                : '<p>Your cart is empty.</p>';
+
+            document.getElementById('cartTotal').textContent =
+                cart.reduce((total, item) => total + item.price, 0) + ' SEK';
+        }
+
+        document.getElementById('checkoutBtn').onclick = () => {
+            if (!cart.length) return;
+
+            const items = cart.map(item => {
+                const variantId = shopifyVariants[item.id]?.[item.size];
+
+                if (!variantId) {
+                    alert(
+                        'Checkout is not connected yet for ' +
+                        item.title +
+                        ' – ' +
+                        item.size +
+                        '.'
+                    );
+                    return null;
+                }
+
+                return `${variantId}:1`;
+            });
+
+            if (items.some(item => item === null)) return;
+
+            window.location.href =
+                `https://1eb00u-rv.myshopify.com/cart/${items.join(',')}`;
+        };
+
     </script>
 </body>
 
