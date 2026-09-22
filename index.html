@@ -160,7 +160,7 @@
             text-align: center
         }
         .card-farbrorn {
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
         .card:nth-child(4),
@@ -293,7 +293,8 @@
         }
 
         #violinisten .stage.room {
-            background-position: center 42%
+           background-position: center 42%;
+           
         }
 
         #systrarna .stage.room {
@@ -513,7 +514,7 @@
             right: 0;
             top: 0;
             width: min(410px, 92vw);
-            height: 100vh;
+            height: 100dvh;
             background: var(--paper);
             z-index: 81;
             transform: translateX(100%);
@@ -580,8 +581,14 @@
             color: #777
         }
 
-        @media(max-width:800px) {
-            .nav {
+        @media(max-width:800px) {.stage.room .frame {
+    transform: translate(-50%, -50%) scale(1.4);
+}
+           #slarvig-card {
+            
+    grid-column: 2;
+    grid-row: 1;
+} .nav {
                 grid-template-columns: 1fr;
                 height: auto;
                 padding: 18px;
@@ -1015,15 +1022,43 @@ img[src="assets/gott-hjarta.jpg"] {
             </p>
         </div>
 
-        <form class="signup"
-              onsubmit="event.preventDefault();this.innerHTML='<p>Welcome to Studio Tove — your code is <strong>STUDIO10</strong></p>'">
-
-            <input type="email"
-                   placeholder="Your email address"
-                   required>
+        <form class="signup" action="https://formspree.io/f/meaogvwv" method="POST">
+    
+           <input type="email"
+       name="email"
+       placeholder="Your email address"
+       required>
 
             <button>Join</button>
-        </form>
+        </form><script>
+document.querySelector('.signup').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const email = form.querySelector('input[type="email"]').value;
+
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            form.innerHTML = `
+                <div>
+                    <strong>Thank you!</strong><br>
+                    Your 10% discount code is <strong>STUDIOTOVE10</strong>
+                </div>
+            `;
+        } else {
+            alert('Something went wrong. Please try again.');
+        }
+    } catch (error) {
+        alert('Something went wrong. Please try again.');
+    }
+});
+</script>
     </section>
 </div>
     <main>
@@ -1082,7 +1117,7 @@ img[src="assets/gott-hjarta.jpg"] {
                     <p class="meta">Limited edition</p>
                     <p class="price">From 299 SEK</p><a class="story-link" href="#violinisten">View artwork →</a>
                 </article>
-                <article class="card">
+                <article class="card" id="slarvig-card">
     <img class="art" src="assets/slarvig-historia.jpg">
     <h2>Slarvig historia</h2>
     <p class="meta">Limited edition</p>
@@ -1096,8 +1131,7 @@ img[src="assets/gott-hjarta.jpg"] {
             <div>
                 <p class="limited">The artist</p>
                 <h2>Tove Hähnel</h2>
-                <p>I am a Swedish artist and writer. My work is inspired by people, places, travels and memories —
-                    paintings as small stories about moments that stayed.</p>
+                <p>I am a Swedish artist seeking to capture moments and faces that have stayed with me. Sometimes my imagination takes over a little, but that's fine — it's only paint. I hope you'll want a piece of my point of view on your wall. Welcome to Studio Tove.</p>
             </div>
         </section>
         
