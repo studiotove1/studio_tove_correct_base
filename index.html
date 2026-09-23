@@ -1282,45 +1282,241 @@ document.querySelector('.signup').addEventListener('submit', async function(even
     'slarvig-historia': [['13x18', 0, 10], ['A3 (29.7x42)', 100, 14], ['50x70', 300, 21], ['75x100', 400, 29]],
     'barnet': [['20x25', 0, 10], ['40x50', 200, 14], ['75x100', 400, 29]],
     'kvinnan': [['20x25', 0, 10], ['45x60', 200, 14], ['60x80', 400, 21]],
-    'hemmafrun': [['20x25', 0, 10], ['40x50', 200, 14], ['75x100', 400, 29]],
+    'hemmafrun': [['13x18', 0, 10], ['A2 (42x59.4)', 200, 14], ['A1 (59.4x84.1)', 400, 21], ['70x100', 500, 29]],
     'farbrorn': [['15x20', 0, 10], ['30x40', 100, 14], ['50x70', 300, 21]]
 };
 const shopifyVariants = {
+
   'gubben': {
-    '13x18': '58433432519039',
-    '27x35': '58433432551807',
-    '40x50': '58433432584575'
+    '13x18': {
+      'No frame': '58433432519039',
+      'Walnut': '58475844862335',
+      'Black': '58475844895103'
+    },
+    '27x35': {
+      'No frame': '58433432551807',
+      'Walnut': '58475844927871',
+      'Black': '58475844960639'
+    },
+    '40x50': {
+      'No frame': '58433432584575',
+      'Walnut': '58475844993407',
+      'Black': '58475845026175'
+    }
   },
-'violinisten': {
-    '20x25': '58433538228607',
-    '35x35': '58433538261375'
-},'farbrorn': {
-    '15x20': '58433306198399',
-    '30x40': '58388874887551',
-    '50x70': '58388874920319'
-},'slarvig-historia': {
-    '13x18': '58388710883711',
-    'A3 (29.7x42)': '58388710916479',
-    '50x70': '58388710949247',
-    '75x100': '58388710982015'
-},'kvinnan': {
-    '20x25': '58383493792127',
-    '45x60': '58383493824895',
-    '60x80': '58383493857663'
-},'systrarna': {
-    '20x25': '58383246819711',
-    '30x40': '58383246852479',
-    '40x50': '58383246885247'
-},'barnet': {
-    '20x25': '58382798455167',
-    '40x50': '58382798487935',
-    '75x100': '58382798520703'
-},'gott-hjarta': {
-    '25x25': '58356073267583',
-    '35x35': '58356073300351',
-    '50x50': '58356073333119',
-    '70x70': '58356073365887'
-},'hemmafrun': [['13x18', 0, 10], ['A2 (42x59.4)', 100, 14], ['A1 (59.4x84.1)', 200, 21], ['75x100', 400, 29]],
+
+  'violinisten': {
+    '20x25': {
+      'No frame': '58433538228607',
+      'Walnut': '58476015681919',
+      'Black': '58476015714687'
+    },
+    '35x35': {
+      'No frame': '58433538261375',
+      'Walnut': '58476015747455',
+      'Black': '58476015780223'
+    }
+  },
+
+  'farbrorn': {
+    '15x20': {
+      'No frame': '58433306198399',
+      'Walnut': '58475709071743',
+      'Black': '58475709104511'
+    },
+    '30x40': {
+      'No frame': '58388874887551',
+      'Walnut': '58475709137279',
+      'Black': '58475709170047'
+    },
+    '50x70': {
+      'No frame': '58388874920319',
+      'Walnut': '58475709202815',
+      'Black': '58475709235583'
+    }
+  },
+
+  'slarvig-historia': {
+    '13x18': {
+      'No frame': '58388710883711',
+      'Walnut': '58476128076159',
+      'Black': '58476128108927'
+    },
+    'A3 (29.7x42)': {
+      'No frame': '58388710916479',
+      'Walnut': '58476128141695',
+      'Black': '58476128174463'
+    },
+    '50x70': {
+      'No frame': '58388710949247',
+      'Walnut': '58476128207231',
+      'Black': '58476128239999'
+    },
+    '75x100': {
+      'No frame': '58388710982015',
+      'Walnut': '58476128272767',
+      'Black': '58476128305535'
+    }
+  },
+
+  'kvinnan': {
+    '20x25': {
+      'No frame': '58383493792127',
+      'Walnut': '58475869471103',
+      'Black': '58475869503871'
+    },
+    '45x60': {
+      'No frame': '58383493824895',
+      'Walnut': '58475869536639',
+      'Black': '58475869569407'
+    },
+    '60x80': {
+      'No frame': '58383493857663',
+      'Walnut': '58475869602175',
+      'Black': '58475869634943'
+    }
+  },
+
+  'systrarna': {
+    '20x25': {
+      'No frame': '58383246819711',
+      'Walnut': '58475911840127',
+      'Black': '58475911872895'
+    },
+    '30x40': {
+      'No frame': '58383246852479',
+      'Walnut': '58475911905663',
+      'Black': '58475911938431'
+    },
+    '40x50': {
+      'No frame': '58383246885247',
+      'Walnut': '58475911971199',
+      'Black': '58475912003967'
+    }
+  },
+
+  'barnet': {
+    '20x25': {
+      'No frame': '58382798455167',
+      'Walnut': '58475970724223',
+      'Black': '58475970756991'
+    },
+    '40x50': {
+      'No frame': '58382798487935',
+      'Walnut': '58475970789759',
+      'Black': '58475970822527'
+    },
+    '75x100': {
+      'No frame': '58382798520703',
+      'Walnut': '58475970855295',
+      'Black': '58475970888063'
+    }
+  },
+
+  'gott-hjarta': {
+    '25x25': {
+      'No frame': '58356073267583',
+      'Walnut': '58476197675391',
+      'Black': '58476197708159'
+    },
+    '35x35': {
+      'No frame': '58356073300351',
+      'Walnut': '58476197740927',
+      'Black': '58476197773695'
+    },
+    '50x50': {
+      'No frame': '58356073333119',
+      'Walnut': '58476197806463',
+      'Black': '58476197839231'
+    },
+    '70x70': {
+      'No frame': '58356073365887',
+      'Walnut': '58476197871999',
+      'Black': '58476197904767'
+    }
+  },
+
+  'hemmafrun': {
+    '13x18': {
+      'No frame': '58456367595903',
+      'Walnut': '58502658359679',
+      'Black': '58502658392447'
+    },
+    'A2 (42x59.4)': {
+      'No frame': '58456351310207',
+      'Walnut': '58502658425215',
+      'Black': '58502658457983'
+    },
+    'A1 (59.4x84.1)': {
+      'No frame': '58456351342975',
+      'Walnut': '58502658490751',
+      'Black': '58502658523519'
+    },
+    '75x100': {
+      'No frame': '58456351375743',
+      'Walnut': '58502658556287',
+      'Black': '58502658589055'
+    }
+  }
+
+};const shopifyPrices = {
+
+  'gubben': {
+    '13x18': { 'No frame': 299, 'Walnut': 499, 'Black': 499 },
+    '27x35': { 'No frame': 399, 'Walnut': 699, 'Black': 699 },
+    '40x50': { 'No frame': 499, 'Walnut': 899, 'Black': 899 }
+  },
+
+  'violinisten': {
+    '20x25': { 'No frame': 299, 'Walnut': 499, 'Black': 499 },
+    '35x35': { 'No frame': 399, 'Walnut': 799, 'Black': 799 }
+  },
+
+  'farbrorn': {
+    '15x20': { 'No frame': 299, 'Walnut': 499, 'Black': 499 },
+    '30x40': { 'No frame': 399, 'Walnut': 899, 'Black': 899 },
+    '50x70': { 'No frame': 599, 'Walnut': 1499, 'Black': 1499 }
+  },
+
+  'slarvig-historia': {
+    '13x18': { 'No frame': 324.46, 'Walnut': 399, 'Black': 399 },
+    'A3 (29.7x42)': { 'No frame': 384.32, 'Walnut': 899, 'Black': 899 },
+    '50x70': { 'No frame': 499, 'Walnut': 1499, 'Black': 1499 },
+    '75x100': { 'No frame': 543.72, 'Walnut': 2299, 'Black': 2299 }
+  },
+
+  'kvinnan': {
+    '20x25': { 'No frame': 299, 'Walnut': 499, 'Black': 499 },
+    '45x60': { 'No frame': 499, 'Walnut': 999, 'Black': 999 },
+    '60x80': { 'No frame': 699, 'Walnut': 1899, 'Black': 1899 }
+  },
+
+  'systrarna': {
+    '20x25': { 'No frame': 299, 'Walnut': 499, 'Black': 499 },
+    '30x40': { 'No frame': 499, 'Walnut': 799, 'Black': 799 },
+    '40x50': { 'No frame': 599, 'Walnut': 1199, 'Black': 1199 }
+  },
+
+  'barnet': {
+    '20x25': { 'No frame': 331.52, 'Walnut': 499, 'Black': 499 },
+    '40x50': { 'No frame': 405.82, 'Walnut': 1099, 'Black': 1099 },
+    '75x100': { 'No frame': 543.72, 'Walnut': 2399, 'Black': 2399 }
+  },
+
+  'gott-hjarta': {
+    '25x25': { 'No frame': 399, 'Walnut': 599, 'Black': 599 },
+    '35x35': { 'No frame': 499, 'Walnut': 899, 'Black': 899 },
+    '50x50': { 'No frame': 699, 'Walnut': 1299, 'Black': 1299 },
+    '70x70': { 'No frame': 899, 'Walnut': 1999, 'Black': 1999 }
+  },
+
+  'hemmafrun': {
+    '13x18': { 'No frame': 299, 'Walnut': 499, 'Black': 499 },
+    'A2 (42x59.4)': { 'No frame': 399, 'Walnut': 1299, 'Black': 1299 },
+    'A1 (59.4x84.1)': { 'No frame': 499, 'Walnut': 1999, 'Black': 1999 },
+    '70x100': { 'No frame': 699, 'Walnut': 2599, 'Black': 2599 }
+  }
+
 };
 
         const frames = [['No frame', 0, 'none'], ['Walnut', 450, 'walnut'], ['Black', 350, 'black']];
@@ -1339,8 +1535,12 @@ const shopifyVariants = {
             let fr = 0;
 
             const update = () => {
-                price.textContent = 299 + size + fr + ' SEK';
-            };
+    const selectedSize = sec.querySelector('.sizeChoices .choice.active')?.textContent.trim();
+    const selectedFrame = sec.querySelector('.frameChoices .choice.active')?.textContent.trim();
+
+    price.textContent =
+        (shopifyPrices[sec.id]?.[selectedSize]?.[selectedFrame] ?? 299) + ' SEK';
+};
 
             sec.querySelectorAll('.sizeChoices .choice').forEach(b => {
                 b.onclick = () => {
@@ -1409,7 +1609,7 @@ const shopifyVariants = {
                     img: sec.dataset.img,
                     size: selectedSize,
                     frame: selectedFrame,
-                    price: 299 + size + fr
+                    price: shopifyPrices[sec.id]?.[selectedSize]?.[selectedFrame] ?? 299
                 });
 
                 render();
@@ -1469,7 +1669,7 @@ const shopifyVariants = {
             if (!cart.length) return;
 
             const items = cart.map(item => {
-                const variantId = shopifyVariants[item.id]?.[item.size];
+               const variantId = shopifyVariants[item.id]?.[item.size]?.[item.frame];
 
                 if (!variantId) {
                     alert(
